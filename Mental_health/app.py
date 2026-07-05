@@ -59,19 +59,28 @@ st.divider()
 
 # ==========================================================
 
-
+import os
 import pickle
+import streamlit as st
 
 @st.cache_resource
 def load_model():
 
-    with open("Quantum_CatBoost_Model.sav", "rb") as f:
+    st.write("Current directory:", os.getcwd())
+    st.write("Files in current directory:", os.listdir("."))
+
+    model_path = "Quantum_CatBoost_Model.sav"
+
+    if not os.path.exists(model_path):
+        st.error(f"Model file not found: {model_path}")
+        st.stop()
+
+    with open(model_path, "rb") as f:
         model = pickle.load(f)
 
     return model
 
 model = load_model()
-
 # ==========================================================
 # QUANTUM DEVICE
 # ==========================================================
