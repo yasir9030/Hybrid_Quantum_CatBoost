@@ -58,15 +58,15 @@ and **CatBoost Classifier**.
 st.divider()
 
 # ==========================================================
-# LOAD MODEL
-# ==========================================================
+
+
+import pickle
 
 @st.cache_resource
 def load_model():
 
-    model = pickle.load(
-        open("F:\\QML Project\\Mental_health\\Model\\Quantum_CatBoost_Model.sav","rb")
-    )
+    with open("Quantum_CatBoost_Model.sav", "rb") as f:
+        model = pickle.load(f)
 
     return model
 
