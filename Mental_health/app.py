@@ -2,6 +2,7 @@ import streamlit as st
 import numpy as np
 import pickle
 import pennylane as qml
+from sklearn.preprocessing import LabelEncoder
 
 # ==========================================================
 # PAGE CONFIG
@@ -169,45 +170,26 @@ with col1:
         3
     )
 
-  degree_options = [
-    "B.Ed",
-    "B.Arch",
-    "B.Com",
-    "B.Pharm",
-    "B.Tech",
-    "BA",
-    "BBA",
-    "BCA",
-    "BE",
-    "BHM",
-    "BSc",
-    "Class 12",
-    "LLB",
-    "M.Com",
-    "M.Ed",
-    "M.Pharm",
-    "M.Tech",
-    "MA",
-    "MBA",
-    "MBBS",
-    "MCA",
-    "MD",
-    "ME",
-    "MHM",
-    "MSc",
-    "Others",
-    "PhD"
-]
+    degree_encoder = LabelEncoder()
+    degree_encoder.classes_ = np.array([
+        'B.Arch', 'B.Com', 'B.Ed', 'B.Pharm', 'B.Tech',
+        'BA', 'BBA', 'BCA', 'BE', 'BHM',
+        'BSc', 'Class 12', 'LLB', 'LLM',
+        'M.Com', 'M.Ed', 'M.Pharm', 'M.Tech',
+        'MA', 'MBA', 'MBBS', 'MCA', 'MD',
+        'ME', 'MHM', 'MSc', 'Others', 'PhD'
+    ])
 
-degree = st.selectbox(
-    "Degree",
-    degree_options
-)
+    degree = st.selectbox(
+        "Degree",
+        degree_encoder.classes_
+    )
 
-degree_map = {name: i for i, name in enumerate(degree_options)}
+    degree_encoded = degree_encoder.transform([degree])[0]
 
-degree_encoded = degree_map[degree]
 
+  
+  
 with col2:
 
     dietary_habits = st.number_input(
