@@ -189,24 +189,33 @@ with col1:
 
 
   
-  
 with col2:
 
-    dietary_habits = st.number_input(
-        "Dietary Habits (0-3)",
-        min_value=0,
-        max_value=3,
-        value=1,
-        step=1
+    diet_options = [
+        "Healthy",
+        "Moderate",
+        "Others",
+        "Unhealthy"
+    ]
+
+    dietary_habits = st.selectbox(
+        "Dietary Habits",
+        diet_options
     )
 
-    suicidal = st.number_input(
-        "Have you ever had suicidal thoughts? (0=No, 1=Yes)",
-        min_value=0,
-        max_value=1,
-        value=0,
-        step=1
+    diet_encoded = diet_options.index(dietary_habits)
+
+    suicidal_options = [
+        "No",
+        "Yes"
+    ]
+
+    suicidal = st.selectbox(
+        "Have you ever had suicidal thoughts?",
+        suicidal_options
     )
+
+    suicidal_encoded = suicidal_options.index(suicidal)
 
     work_hours = st.slider(
         "Work/Study Hours",
@@ -228,8 +237,8 @@ sample = np.array([[
     academic_pressure,
     study_satisfaction,
     degree_encoded,
-    dietary_habits,
-    suicidal,
+    diet_encoded,
+    suicidal_encoded,
     work_hours,
     financial_stress
 ]])
