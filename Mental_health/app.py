@@ -169,13 +169,44 @@ with col1:
         3
     )
 
-    degree = st.number_input(
-        "Degree (0-27)",
-        min_value=0,
-        max_value=27,
-        value=10,
-        step=1
-    )
+  degree_options = [
+    "B.Ed",
+    "B.Arch",
+    "B.Com",
+    "B.Pharm",
+    "B.Tech",
+    "BA",
+    "BBA",
+    "BCA",
+    "BE",
+    "BHM",
+    "BSc",
+    "Class 12",
+    "LLB",
+    "M.Com",
+    "M.Ed",
+    "M.Pharm",
+    "M.Tech",
+    "MA",
+    "MBA",
+    "MBBS",
+    "MCA",
+    "MD",
+    "ME",
+    "MHM",
+    "MSc",
+    "Others",
+    "PhD"
+]
+
+degree = st.selectbox(
+    "Degree",
+    degree_options
+)
+
+degree_map = {name: i for i, name in enumerate(degree_options)}
+
+degree_encoded = degree_map[degree]
 
 with col2:
 
@@ -209,35 +240,12 @@ with col2:
         2
     )
 
-# ==========================================================
-# LABEL ENCODING
-# ==========================================================
-
-"""sleep_map = {
-    "5-6 hours":0,
-    "7-8 hours":1,
-    "Less than 5 hours":2,
-    "More than 8 hours":3,
-    "Others":4
-}
-
-diet_map = {
-    "Healthy":0,
-    "Moderate":1,
-    "Others":2,
-    "Unhealthy":3
-}
-
-suicidal_map = {
-    "No":0,
-    "Yes":1
-}"""
 
 sample = np.array([[
     age,
     academic_pressure,
     study_satisfaction,
-    degree,
+    degree_encoded,
     dietary_habits,
     suicidal,
     work_hours,
