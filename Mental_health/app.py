@@ -169,35 +169,30 @@ with col1:
         3
     )
 
-    sleep_duration = st.selectbox(
-        "Sleep Duration",
-        [
-            "5-6 hours",
-            "7-8 hours",
-            "Less than 5 hours",
-            "More than 8 hours",
-            "Others"
-        ]
+    degree = st.number_input(
+        "Degree (0-27)",
+        min_value=0,
+        max_value=27,
+        value=10,
+        step=1
     )
 
 with col2:
 
-    dietary_habits = st.selectbox(
-        "Dietary Habits",
-        [
-            "Healthy",
-            "Moderate",
-            "Others",
-            "Unhealthy"
-        ]
+    dietary_habits = st.number_input(
+        "Dietary Habits (0-3)",
+        min_value=0,
+        max_value=3,
+        value=1,
+        step=1
     )
 
-    suicidal = st.selectbox(
-        "Have you ever had suicidal thoughts?",
-        [
-            "No",
-            "Yes"
-        ]
+    suicidal = st.number_input(
+        "Have you ever had suicidal thoughts? (0=No, 1=Yes)",
+        min_value=0,
+        max_value=1,
+        value=0,
+        step=1
     )
 
     work_hours = st.slider(
@@ -218,7 +213,7 @@ with col2:
 # LABEL ENCODING
 # ==========================================================
 
-sleep_map = {
+"""sleep_map = {
     "5-6 hours":0,
     "7-8 hours":1,
     "Less than 5 hours":2,
@@ -236,15 +231,15 @@ diet_map = {
 suicidal_map = {
     "No":0,
     "Yes":1
-}
+}"""
 
 sample = np.array([[
     age,
     academic_pressure,
     study_satisfaction,
-    sleep_map[sleep_duration],
-    diet_map[dietary_habits],
-    suicidal_map[suicidal],
+    degree,
+    dietary_habits,
+    suicidal,
     work_hours,
     financial_stress
 ]])
@@ -344,7 +339,7 @@ if st.button("Show Model Information"):
 
         ✔ Study Satisfaction
 
-        ✔ Sleep Duration
+        ✔ Degree
 
         ✔ Dietary Habits
 
