@@ -135,7 +135,7 @@ Qubits : 8
 
 Quantum Encoding : AngleEmbedding
 
-Backend : PennyLane (CPU)
+Backend : PennyLane (GPU)
 """
 )
 
