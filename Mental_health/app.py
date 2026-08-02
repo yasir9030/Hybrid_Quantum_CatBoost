@@ -308,7 +308,7 @@ if st.button("Show Model Information"):
 
         • PennyLane
 
-        • CPU Simulator
+        • GPU Simulator
         """
         )
 
